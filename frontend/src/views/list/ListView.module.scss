@@ -1,0 +1,21 @@
+
+.listHeader {
+    width: 1280px;
+}
+
+.headerTitle {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.headerAction {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 80px;
+    align-items: center;
+}
+
+.listItemTitle {
+    cursor: pointer;
+}
+

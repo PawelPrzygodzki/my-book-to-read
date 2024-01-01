@@ -1,0 +1,25 @@
+
+.header {
+    max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 40px;
+    border-bottom: 1px solid #F0F0F0;
+}
+
+.wrapper {
+    width: 100%
+}
+
+.menu {
+    width: 1280px;
+    background-color: transparent;
+    border: 0;
+    display: flex;
+    flex-direction: row;
+}
+
+.menuItem {
+    text-transform: uppercase;
+    font-weight: 700;
+}
