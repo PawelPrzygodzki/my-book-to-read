@@ -5,7 +5,7 @@ import {
   PrimaryGeneratedColumn,
   Unique,
 } from 'typeorm';
-import * as argon2 from 'argon2';
+import * as bcrypt from 'bcrypt';
 import { List } from '../../list/entities/list.entity';
 
 @Entity()
@@ -24,6 +24,6 @@ export class User {
   lists: List[];
 
   public async isPasswordValid(password: string): Promise<boolean> {
-    return argon2.verify(this.password || '', password);
+    return bcrypt.compare( password, this.password || '');
   }
 }

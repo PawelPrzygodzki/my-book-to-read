@@ -4,7 +4,7 @@ Simple web "My Books To Read" application that allows the user to add and view a
 
 ## TODO 
 
-- [ ] Dockerize app
+- [X] Dockerize app
 
 ## Requirements
 
@@ -21,3 +21,12 @@ Install all dependencies for backend and frontend part
 Run backend service in one terminal (Instruction in backend/README.md)
 Run frontend service in another terminal (Instruction in frontend/README.md)
 Open http://localhost:3000 in your browser
+
+### Run locally with docker 
+
+Run
+```
+docker-compose up --build
+```
+
+Docker will build backend, frontend app and postgres database when finish open http://localhost:3000 in your browser

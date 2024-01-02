@@ -15,7 +15,7 @@ export default {
     process.env.NODE_ENV === 'test' && process.env.IS_TEST === 'true'
       ? ['./src/**/*.entity.ts']
       : ['./dist/**/*.entity.js'],
-  migrationsRun: false,
+  migrationsRun: true,
   migrationsTableName: 'migrations',
   migrationsTransactionMode: 'each',
   synchronize: false,

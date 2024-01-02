@@ -1,0 +1,74 @@
+version: '3'
+
+services:
+
+  my-books-to-read-backend:
+    build:
+      context: backend
+    container_name: my-books-to-read-backend
+    working_dir: /usr/src/app
+    networks:
+      - node-network
+    volumes:
+      - ./backend:/usr/src/app
+      - /usr/src/app/node_modules
+    tty: true
+    environment:
+      JWT_SECRET: 'super_secure_jwt_password'
+      DATABASE_SSL: 'false'
+      DATABASE_URL: 'postgresql://postgres:secret@postgres:5432/postgres'
+      PORT: 3001
+    ports:
+      - "3001:3001"
+    command: npm run start
+    depends_on:
+      - db
+
+  my-books-to-read-frontend:
+    build:
+      context: frontend
+    container_name: my-books-to-read-frontend
+    working_dir: /usr/src/app
+    environment:
+      REACT_APP_API_BASE_URL: 'http://localhost:3001/api'
+    networks:
+      - node-network
+    volumes:
+      - ./frontend:/usr/src/app
+      - /usr/src/app/node_modules
+    tty: true
+    ports:
+      - "3000:3000"
+    command: npm run start
+
+  db:
+    image: postgres
+    container_name: postgres
+    restart: always
+    tty: true
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=secret
+    ports:
+      - "5432:5432"
+    networks:
+      - node-network
+
+  nginx:
+    build:
+      context: infrastructure
+    container_name: nginx
+    restart: always
+    tty: true
+    ports:
+      - "8000:80"
+    networks:
+      - node-network
+    depends_on:
+      - my-books-to-read-backend
+      - my-books-to-read-frontend
+
+networks:
+  node-network:
+    driver: bridge

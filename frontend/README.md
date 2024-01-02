@@ -6,7 +6,7 @@ This service is frontend site of My Book To Read application
 
 - [ ] Add more unit tests
 - [ ] Move in line type to separate common files
-- [ ] Create docker file for service
+- [X] Create docker file for service
 
 ## Development
 

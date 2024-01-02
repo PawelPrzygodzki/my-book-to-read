@@ -9,7 +9,7 @@ This service is backend site of My Book To Read application
 - [ ] Add swagger documentation for API
 - [ ] Make open library service more generic
 - [ ] Add transaction for add and remove book to list
-- [ ] Create docker file for service
+- [X] Create docker file for service
 
 ## Development
 

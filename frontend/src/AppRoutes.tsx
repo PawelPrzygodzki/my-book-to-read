@@ -1,5 +1,5 @@
 import React, {lazy} from 'react';
-import {Route, Routes} from 'react-router-dom';
+import {Navigate, Route, Routes} from 'react-router-dom';
 import ROUTES from './app/routes';
 import ProtectedRoute from "./components/ProtectedRoute";
 
@@ -22,7 +22,7 @@ const ListView = lazy(() => import('./views/list/ListView'));
 function AppRoutes() {
     return (
         <Routes>
-            <Route path={HOME} element={<div>redirect to login or lists</div>}/>
+            <Route path={HOME} element={<Navigate to={ROUTES.LISTS} />} />
             <Route path={LISTS} element={<ProtectedRoute><DefaultLayout><ListsView/></DefaultLayout></ProtectedRoute>}/>
             <Route path={LIST} element={<ProtectedRoute><DefaultLayout><ListView/></DefaultLayout></ProtectedRoute>}/>
             <Route path={LOGOUT}

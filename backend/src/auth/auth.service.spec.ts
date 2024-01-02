@@ -4,7 +4,7 @@ import { UserService } from '../user/user.service';
 import { UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { User } from '../user/entities/user.entity';
-import * as argon2 from 'argon2';
+import * as bcrypt from 'bcrypt';
 
 const mockUserService = () => ({
   findByEmail: jest.fn(),
@@ -60,7 +60,7 @@ describe('AuthService', () => {
       const user = new User();
       user.id = 123;
       user.email = payloadToSign.email;
-      user.password = await argon2.hash('other-password');
+      user.password = await bcrypt.hash('other-password', 10);
 
       jest.spyOn(userService, 'findByEmail').mockResolvedValue(user);
 
@@ -80,7 +80,7 @@ describe('AuthService', () => {
       const user = new User();
       user.id = 123;
       user.email = payloadToSign.email;
-      user.password = await argon2.hash(payloadToSign.password);
+      user.password = await bcrypt.hash(payloadToSign.password, 10);
 
       jest.spyOn(userService, 'findByEmail').mockResolvedValue(user);
       jest.spyOn(jwtService, 'signAsync').mockResolvedValue(tokenWithPayload);
